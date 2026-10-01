@@ -1,0 +1,24 @@
+---
+import { site } from "../config/site";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-sage-900 pb-28 pt-12 text-cream-200 md:pb-12">
+  <div class="mx-auto max-w-4xl px-5 text-center sm:px-8">
+    <p class="font-display text-xl font-bold text-cream-50">{site.brand}</p>
+
+    <nav class="mt-5 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm" aria-label="Legal">
+      {
+        site.footer.links.map((link) => (
+          <a href={link.href} class="underline-offset-4 hover:text-white hover:underline">
+            {link.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <p class="mx-auto mt-8 max-w-3xl text-xs leading-relaxed text-cream-200/80">{site.footer.disclaimer}</p>
+    <p class="mt-6 text-xs text-cream-200/60">© {year} {site.brand}. Todos los derechos reservados.</p>
+  </div>
+</footer>

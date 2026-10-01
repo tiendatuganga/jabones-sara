@@ -1,0 +1,21 @@
+---
+import { site } from "../config/site";
+import Section from "./ui/Section.astro";
+import SectionHeading from "./ui/SectionHeading.astro";
+import CtaButton from "./ui/CtaButton.astro";
+import Accordion from "./react/Accordion";
+
+const { modulesSection, modules } = site;
+const items = modules.map((m) => ({ title: m.title, summary: m.summary, list: m.lessons }));
+---
+
+<Section id="contenido">
+  <SectionHeading eyebrow={modulesSection.eyebrow} title={modulesSection.title} subtitle={modulesSection.subtitle} />
+
+  <div class="mx-auto max-w-3xl">
+    <Accordion client:visible items={items} defaultOpen={0} />
+    <div class="mt-10 text-center">
+      <CtaButton />
+    </div>
+  </div>
+</Section>

@@ -1,0 +1,33 @@
+---
+import { site } from "../config/site";
+import Section from "./ui/Section.astro";
+import SectionHeading from "./ui/SectionHeading.astro";
+
+const { pains } = site;
+---
+
+<Section tone="sand">
+  <SectionHeading title={pains.title} />
+
+  <ul class="mx-auto grid max-w-4xl gap-4 sm:grid-cols-2">
+    {
+      pains.items.map((item) => (
+        <li class="flex gap-4 rounded-2xl bg-white p-5 shadow-sm ring-1 ring-cream-200">
+          <span
+            class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-clay-300/40 text-clay-500"
+            aria-hidden="true"
+          >
+            <svg viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4">
+              <path d="M5.3 5.3a1 1 0 0 1 1.4 0L10 8.6l3.3-3.3a1 1 0 1 1 1.4 1.4L11.4 10l3.3 3.3a1 1 0 0 1-1.4 1.4L10 11.4l-3.3 3.3a1 1 0 0 1-1.4-1.4L8.6 10 5.3 6.7a1 1 0 0 1 0-1.4Z" />
+            </svg>
+          </span>
+          <span class="leading-relaxed text-ink-soft">{item}</span>
+        </li>
+      ))
+    }
+  </ul>
+
+  <p class="mx-auto mt-12 max-w-2xl text-center font-display text-2xl font-semibold leading-snug text-sage-900 text-balance sm:text-3xl">
+    {pains.resolution}
+  </p>
+</Section>

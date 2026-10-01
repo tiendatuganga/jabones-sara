@@ -1,0 +1,57 @@
+---
+interface Props {
+  class?: string;
+}
+const { class: className = "" } = Astro.props;
+---
+
+<svg
+  viewBox="0 0 480 440"
+  role="img"
+  aria-label="Tres pastillas de jabón artesanal rodeadas de hojas y burbujas"
+  class:list={["h-auto", className]}
+>
+  <!-- Fondo -->
+  <circle cx="240" cy="222" r="200" class="fill-sage-100"></circle>
+  <circle cx="240" cy="222" r="148" class="fill-cream-50" opacity="0.65"></circle>
+
+  <!-- Hojas -->
+  <g class="fill-sage-500">
+    <path d="M70 120c40-62 112-62 140-14-44 44-104 48-140 14Z" opacity="0.9"></path>
+    <path d="M395 330c-30 54-92 66-128 28 30-48 92-66 128-28Z" opacity="0.85"></path>
+  </g>
+  <path d="M82 118c36 6 82-6 118-8" class="fill-none stroke-sage-700" stroke-width="3" stroke-linecap="round" opacity="0.6"></path>
+
+  <!-- Jabón 3 (arriba, arcilla) -->
+  <g transform="rotate(10 300 130)">
+    <rect x="215" y="100" width="170" height="84" rx="22" class="fill-clay-500"></rect>
+    <rect x="215" y="88" width="170" height="84" rx="22" class="fill-clay-300"></rect>
+    <path d="M242 130c22-14 40 12 62-2s44-12 60 2" class="fill-none stroke-cream-50" stroke-width="7" stroke-linecap="round" opacity="0.75"></path>
+  </g>
+
+  <!-- Jabón 2 (medio, salvia) -->
+  <g transform="rotate(-6 215 235)">
+    <rect x="95" y="190" width="230" height="110" rx="26" class="fill-sage-700"></rect>
+    <rect x="95" y="177" width="230" height="110" rx="26" class="fill-sage-300"></rect>
+    <path d="M125 218c28-22 52 20 82 0s54-24 82 0" class="fill-none stroke-cream-50" stroke-width="8" stroke-linecap="round" opacity="0.7"></path>
+    <path d="M125 250c28-22 52 20 82 0s54-24 82 0" class="fill-none stroke-sage-500" stroke-width="8" stroke-linecap="round" opacity="0.55"></path>
+  </g>
+
+  <!-- Jabón 1 (abajo, miel) -->
+  <g transform="rotate(4 270 345)">
+    <rect x="150" y="300" width="250" height="100" rx="26" class="fill-honey-500"></rect>
+    <rect x="150" y="288" width="250" height="100" rx="26" class="fill-honey-300"></rect>
+    <rect x="150" y="320" width="250" height="14" class="fill-honey-400" opacity="0.7"></rect>
+    <circle cx="196" cy="338" r="6" class="fill-cream-50" opacity="0.8"></circle>
+    <circle cx="214" cy="352" r="4" class="fill-cream-50" opacity="0.7"></circle>
+  </g>
+
+  <!-- Burbujas -->
+  <g class="fill-none stroke-cream-50" stroke-width="3" opacity="0.95">
+    <circle cx="86" cy="260" r="16"></circle>
+    <circle cx="62" cy="298" r="8"></circle>
+    <circle cx="410" cy="150" r="20"></circle>
+    <circle cx="436" cy="196" r="9"></circle>
+    <circle cx="350" cy="62" r="11"></circle>
+  </g>
+</svg>

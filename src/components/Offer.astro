@@ -1,0 +1,77 @@
+---
+import { site } from "../config/site";
+import { formatPrice } from "../lib/format";
+import Section from "./ui/Section.astro";
+import SectionHeading from "./ui/SectionHeading.astro";
+import CtaButton from "./ui/CtaButton.astro";
+
+const { offer, price, guaranteeDays } = site;
+---
+
+<Section tone="sage" id="oferta">
+  <SectionHeading eyebrow={offer.eyebrow} title={offer.title} />
+
+  <div class="mx-auto max-w-xl">
+    <div class="overflow-hidden rounded-[2rem] bg-white shadow-xl ring-1 ring-sage-200">
+      <div class="bg-sage-700 px-7 py-4 text-center text-sm font-semibold uppercase tracking-widest text-cream-50">
+        {site.product.name}
+      </div>
+
+      <div class="p-7 sm:p-10">
+        <ul class="space-y-3.5">
+          {
+            offer.includes.map((item) => (
+              <li class="flex gap-3">
+                <svg viewBox="0 0 20 20" fill="currentColor" class="mt-0.5 h-5 w-5 shrink-0 text-sage-500" aria-hidden="true">
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.7 5.3a1 1 0 0 1 0 1.4l-7.5 7.5a1 1 0 0 1-1.4 0L3.3 9.7a1 1 0 1 1 1.4-1.4l3.8 3.79 6.8-6.8a1 1 0 0 1 1.4 0Z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                <span>{item}</span>
+              </li>
+            ))
+          }
+        </ul>
+
+        <div class="mt-8 border-t border-sage-100 pt-8 text-center">
+          {
+            price.oldAmount && (
+              <p class="text-lg text-ink-soft line-through">{formatPrice(price.oldAmount, price.currency)}</p>
+            )
+          }
+          <p class="font-display text-6xl font-bold text-sage-900">{formatPrice(price.amount, price.currency)}</p>
+          <p class="mt-1 text-sm text-ink-soft">{price.note}</p>
+
+          <CtaButton class="mt-6 w-full" />
+
+          <p class="mt-4 flex items-center justify-center gap-2 text-sm text-ink-soft">
+            <svg viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4" aria-hidden="true">
+              <path
+                fill-rule="evenodd"
+                d="M10 1a4.5 4.5 0 0 0-4.5 4.5V9H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6a2 2 0 0 0-2-2h-.5V5.5A4.5 4.5 0 0 0 10 1Zm3 8V5.5a3 3 0 1 0-6 0V9h6Z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            Pago seguro gestionado por Hotmart
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-8 flex gap-5 rounded-3xl bg-white/70 p-6 ring-1 ring-sage-200">
+      <div
+        class="flex h-16 w-16 shrink-0 flex-col items-center justify-center rounded-full bg-honey-400 font-display text-ink"
+        aria-hidden="true"
+      >
+        <span class="text-2xl font-bold leading-none">{guaranteeDays}</span>
+        <span class="text-[0.65rem] font-bold uppercase">días</span>
+      </div>
+      <div>
+        <h3 class="font-display text-lg font-bold text-sage-900">{offer.guaranteeTitle}</h3>
+        <p class="mt-1 leading-relaxed text-ink-soft">{offer.guaranteeText}</p>
+      </div>
+    </div>
+  </div>
+</Section>

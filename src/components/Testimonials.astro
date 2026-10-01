@@ -1,0 +1,46 @@
+---
+import { site } from "../config/site";
+import Section from "./ui/Section.astro";
+import SectionHeading from "./ui/SectionHeading.astro";
+
+const { testimonialsSection, testimonials } = site;
+
+if (testimonials.some((t) => t.placeholder)) {
+  console.warn(
+    "\n[vividia] ⚠ Hay testimonios de EJEMPLO en src/config/site.ts. Sustitúyelos por reales (o deja testimonials: []) antes de publicar.\n",
+  );
+}
+---
+
+{
+  testimonials.length > 0 && (
+    <Section id="opiniones">
+      <SectionHeading eyebrow={testimonialsSection.eyebrow} title={testimonialsSection.title} />
+
+      <div class="grid gap-6 md:grid-cols-3">
+        {testimonials.map((item) => (
+          <figure class="flex flex-col rounded-3xl bg-white p-7 shadow-sm ring-1 ring-sage-100">
+            {item.placeholder && (
+              <span class="mb-4 inline-flex w-fit rounded-full bg-honey-300/40 px-3 py-1 text-xs font-bold uppercase tracking-wider text-honey-600">
+                Ejemplo
+              </span>
+            )}
+            <blockquote class="flex-1 text-lg leading-relaxed text-ink">“{item.quote}”</blockquote>
+            <figcaption class="mt-6 flex items-center gap-3">
+              <span
+                class="flex h-11 w-11 items-center justify-center rounded-full bg-sage-100 font-bold text-sage-700"
+                aria-hidden="true"
+              >
+                {item.name.charAt(0)}
+              </span>
+              <span>
+                <span class="block font-semibold">{item.name}</span>
+                <span class="block text-sm text-ink-soft">{item.detail}</span>
+              </span>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </Section>
+  )
+}

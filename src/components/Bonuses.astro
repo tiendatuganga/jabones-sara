@@ -1,0 +1,27 @@
+---
+import { site } from "../config/site";
+import Section from "./ui/Section.astro";
+import SectionHeading from "./ui/SectionHeading.astro";
+
+const { bonusesSection, bonuses } = site;
+---
+
+{
+  bonuses.length > 0 && (
+    <Section tone="dark" id="bonus">
+      <SectionHeading eyebrow={bonusesSection.eyebrow} title={bonusesSection.title} dark />
+
+      <div class="grid gap-6 md:grid-cols-3">
+        {bonuses.map((bonus, index) => (
+          <article class="rounded-3xl bg-white/5 p-7 ring-1 ring-white/15">
+            <span class="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-honey-400 font-display text-lg font-bold text-ink">
+              {index + 1}
+            </span>
+            <h3 class="font-display text-xl font-bold">{bonus.title}</h3>
+            <p class="mt-2 leading-relaxed text-cream-200">{bonus.description}</p>
+          </article>
+        ))}
+      </div>
+    </Section>
+  )
+}

@@ -1,0 +1,16 @@
+---
+import { site } from "../config/site";
+import Section from "./ui/Section.astro";
+import CtaButton from "./ui/CtaButton.astro";
+
+const { finalCta } = site;
+---
+
+<Section tone="dark">
+  <div class="mx-auto max-w-2xl text-center">
+    <h2 class="font-display text-3xl font-bold leading-tight text-balance sm:text-5xl">{finalCta.title}</h2>
+    <p class="mt-5 text-lg text-cream-200">{finalCta.subtitle}</p>
+    <CtaButton class="mt-9" />
+    <p class="mt-4 text-sm text-cream-200">Garantía de {site.guaranteeDays} días · Pago seguro con Hotmart</p>
+  </div>
+</Section>

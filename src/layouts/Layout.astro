@@ -1,0 +1,67 @@
+---
+import "../styles/global.css";
+import { site } from "../config/site";
+
+const title = `${site.product.name} | ${site.brand}`;
+const description = site.product.description;
+const canonical = site.url;
+const ogImage = site.ogImage ? new URL(site.ogImage, site.url).toString() : "";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  name: site.product.name,
+  description,
+  brand: { "@type": "Brand", name: site.brand },
+  offers: {
+    "@type": "Offer",
+    price: site.price.amount,
+    priceCurrency: site.price.currency,
+    availability: "https://schema.org/InStock",
+    url: site.checkoutUrl,
+  },
+};
+---
+
+<!doctype html>
+<html lang={site.locale}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="theme-color" content="#4a5f37" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+    <meta name="twitter:card" content={ogImage ? "summary_large_image" : "summary"} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {ogImage && <meta name="twitter:image" content={ogImage} />}
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body>
+    <slot />
+
+    <script>
+      import { withTracking } from "../lib/checkout";
+
+      document.querySelectorAll<HTMLAnchorElement>("a[data-checkout]").forEach((link) => {
+        link.href = withTracking(link.href, window.location.search);
+      });
+    </script>
+  </body>
+</html>

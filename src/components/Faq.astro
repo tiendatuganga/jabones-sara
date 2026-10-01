@@ -1,0 +1,16 @@
+---
+import { site } from "../config/site";
+import Section from "./ui/Section.astro";
+import SectionHeading from "./ui/SectionHeading.astro";
+import Accordion from "./react/Accordion";
+
+const { faqSection, faq } = site;
+const items = faq.map((f) => ({ title: f.question, content: f.answer }));
+---
+
+<Section id="faq">
+  <SectionHeading eyebrow={faqSection.eyebrow} title={faqSection.title} />
+  <div class="mx-auto max-w-3xl">
+    <Accordion client:visible items={items} />
+  </div>
+</Section>

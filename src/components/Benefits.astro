@@ -1,0 +1,25 @@
+---
+import { site } from "../config/site";
+import Section from "./ui/Section.astro";
+import SectionHeading from "./ui/SectionHeading.astro";
+
+const { benefitsSection, benefits } = site;
+---
+
+<Section tone="sage" id="beneficios">
+  <SectionHeading eyebrow={benefitsSection.eyebrow} title={benefitsSection.title} />
+
+  <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+    {
+      benefits.map((benefit) => (
+        <article class="rounded-3xl bg-white p-7 shadow-sm ring-1 ring-sage-100 transition hover:-translate-y-1 hover:shadow-md">
+          <div class="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-sage-100 text-2xl" aria-hidden="true">
+            {benefit.icon}
+          </div>
+          <h3 class="font-display text-xl font-bold text-sage-900">{benefit.title}</h3>
+          <p class="mt-2 leading-relaxed text-ink-soft">{benefit.text}</p>
+        </article>
+      ))
+    }
+  </div>
+</Section>

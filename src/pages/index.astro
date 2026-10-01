@@ -1,0 +1,45 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { site } from "../config/site";
+import { formatPrice } from "../lib/format";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import TrustBar from "../components/TrustBar.astro";
+import Pains from "../components/Pains.astro";
+import Curriculum from "../components/Curriculum.astro";
+import Benefits from "../components/Benefits.astro";
+import Audience from "../components/Audience.astro";
+import Bonuses from "../components/Bonuses.astro";
+import Instructor from "../components/Instructor.astro";
+import Testimonials from "../components/Testimonials.astro";
+import Offer from "../components/Offer.astro";
+import Faq from "../components/Faq.astro";
+import FinalCta from "../components/FinalCta.astro";
+import Footer from "../components/Footer.astro";
+import StickyCta from "../components/react/StickyCta";
+---
+
+<Layout>
+  <Header />
+  <main>
+    <Hero />
+    <TrustBar />
+    <Pains />
+    <Curriculum />
+    <Benefits />
+    <Audience />
+    <Bonuses />
+    <Instructor />
+    <Testimonials />
+    <Offer />
+    <Faq />
+    <FinalCta />
+  </main>
+  <Footer />
+  <StickyCta
+    client:idle
+    href={site.checkoutUrl}
+    label={site.cta.label}
+    price={formatPrice(site.price.amount, site.price.currency)}
+  />
+</Layout>
