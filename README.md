@@ -39,6 +39,14 @@ Si el visitante llega con `?src=...&utm_source=...` (también `sck`, `utm_medium
 ## Despliegue
 `npm run build` produce `dist/`, desplegable tal cual en Netlify, Vercel, Cloudflare Pages o GitHub Pages.
 
+### Netlify (recomendado, `netlify.toml` ya incluido)
+1. En [app.netlify.com](https://app.netlify.com) → **Add new site → Import an existing project** → GitHub → elige este repositorio.
+2. Rama a publicar: `main`. Netlify lee `netlify.toml` (build `npm run build`, carpeta `dist`).
+3. **Deploy**. Obtendrás un enlace `https://<nombre>.netlify.app`; puedes cambiar el nombre o conectar tu dominio en *Site configuration → Domain management*.
+4. Después, pon ese dominio en `url` de `src/config/site.ts`.
+
+En Vercel y Cloudflare Pages basta con importar el repositorio: detectan Astro solos (build `npm run build`, salida `dist`).
+
 ## Estructura
 ```
 src/config/site.ts        contenido
